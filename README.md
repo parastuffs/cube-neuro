@@ -1,2 +1,1 @@
-# cube-neuro
-Early Creativity - Cube
+# Early Creativity - Cube
