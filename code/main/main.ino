@@ -11,6 +11,9 @@
 #define button_E 8
 #define speaker 9
 #define mode 2
+//#define MODE_YELLOW
+#define MODE_RED
+//#define MODE_GREEN
 
 /**
  * Global variables
@@ -44,6 +47,13 @@ void setup() {
 
   /* Don't know why the delay works, but it avoids to run the setup twice, creating empty experiments. */
   delay(1000);
+
+  // If analog input pin 0 is unconnected, random analog
+  // noise will cause the call to randomSeed() to generate
+  // different seed numbers each time the sketch runs.
+  // randomSeed() will then shuffle the random function.
+  // https://reference.arduino.cc/reference/en/language/functions/random-numbers/random/
+  randomSeed(analogRead(0));
   
   tmrpcm.speakerPin = 9;
   /* 0 to 7 */
@@ -89,7 +99,6 @@ void setup() {
   myFile.println(measures_header);
   /* Do not close the file at this step, so that we can keep using it in the loop(). */
   myFile.flush();
-  //myFile.close();
   
   
   pinMode(button_A, INPUT);
@@ -106,6 +115,47 @@ void setup() {
 }
 
 void loop() {
+  if(!digitalRead(mode)) {
+    demoRoutine();
+  }
+  else {
+    experimentRoutine();
+  }
+}
+
+void playSound() {
+    tmrpcm.play((char*)"coucou.wav");
+    delay(100);
+}
+
+void demoRoutine()
+{
+  #ifdef MODE_YELLOW
+  /* A sound is played on every button press. */
+  if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
+    playSound();
+  }
+  #endif
+
+  #ifdef  MODE_RED
+  /* A sound is played with a 50% chance on a button press. */
+  if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
+    // Delay a bit for the button to settle, otherwise we draw several random values at once.
+    delay(500);
+    if(random(100) > 50) {
+      playSound();
+    }
+  }
+  #endif
+
+  #ifdef  MODE_GREEN
+  /* Nothing happens in this mode. */
+  #endif
+}
+
+void experimentRoutine()
+{
+  tmrpcm.disable();
   curtime = millis();
   // TODO FACTORISE THIS!
   if(digitalRead(button_A)){
@@ -161,17 +211,15 @@ void loop() {
       String measure_str = String(cur_obs) + "," + String(i+1) + "," + String(rising_time[i]) + "," + String(curtime) + "," + 0;
       //Serial.println("Writing this line to the SD card:");
       //Serial.println(measure_str);
-      //myFile = SD.open(exp_filename, FILE_WRITE);
       myFile.println(measure_str);
       myFile.flush();
-      //myFile.close();
       cur_obs++;
       triggered[i] = false;
       falling_edge[i] = false;
-      //delay(5);
     }
   }
 
   delay(5);
+
 
 }
