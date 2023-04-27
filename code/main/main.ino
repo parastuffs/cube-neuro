@@ -11,9 +11,13 @@
 #define button_E 8
 #define speaker 9
 #define mode 2
+
+/* YELLOW: Sound / No sound / Sound */
 //#define MODE_YELLOW
-#define MODE_RED
-//#define MODE_GREEN
+/* RED: No sound / Sound / No sound */
+//#define MODE_RED
+/* GREEN: No sound */
+#define MODE_GREEN
 
 /**
  * Global variables
@@ -41,6 +45,7 @@ bool falling_edge[5] = {false, false, false, false, false};
 unsigned long rising_time[5] = {0, 0, 0, 0, 0};
 
 unsigned int cur_obs = 1;
+unsigned int demo_press_count = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -108,10 +113,10 @@ void setup() {
   pinMode(button_E, INPUT);
   pinMode(mode, INPUT);
 
-  delay(1000);
+  delay(500);
 
   
-  //tmrpcm.play((char*)"coucou.wav");
+  //playSound();
 }
 
 void loop() {
@@ -124,27 +129,45 @@ void loop() {
 }
 
 void playSound() {
-    tmrpcm.play((char*)"coucou.wav");
+    tmrpcm.play((char*)"sound.wav");
     delay(100);
 }
 
+
+/** **********************
+ *  
+ *  DEMONSTRATION ROUTINE
+ * 
+ * ***********************
+ */
 void demoRoutine()
 {
   #ifdef MODE_YELLOW
-  /* A sound is played on every button press. */
   if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
-    playSound();
+    demo_press_count ++;
+    if(demo_press_count == 1) {
+      playSound();
+    }
+    else if(demo_press_count == 3) {
+      playSound();
+      demo_press_count = 0;
+    }
+    /* Delay for a time, limiting multiple concurrent presses and overlapping sounds. */
+    delay(300);
   }
   #endif
 
   #ifdef  MODE_RED
-  /* A sound is played with a 50% chance on a button press. */
   if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
-    // Delay a bit for the button to settle, otherwise we draw several random values at once.
-    delay(500);
-    if(random(100) > 50) {
+    demo_press_count ++;
+    if(demo_press_count == 2) {
       playSound();
     }
+    else if(demo_press_count == 3) {
+      demo_press_count = 0;
+    }
+      /* Delay for a time, limiting multiple concurrent presses and overlapping sounds. */
+      delay(300);
   }
   #endif
 
@@ -153,6 +176,13 @@ void demoRoutine()
   #endif
 }
 
+
+/** **********************
+ *  
+ *   EXPERIMENT ROUTINE
+ * 
+ * ***********************
+ */
 void experimentRoutine()
 {
   tmrpcm.disable();
@@ -211,6 +241,10 @@ void experimentRoutine()
       String measure_str = String(cur_obs) + "," + String(i+1) + "," + String(rising_time[i]) + "," + String(curtime) + "," + 0;
       //Serial.println("Writing this line to the SD card:");
       //Serial.println(measure_str);
+      /* Write to SD card, then immediatly flush the data to make sure it's actually written.
+       *  This removes the need to close the file handler. We can shut down the system without
+       *  corrupting the SD card data.
+       */
       myFile.println(measure_str);
       myFile.flush();
       cur_obs++;
