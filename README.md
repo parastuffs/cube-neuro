@@ -1,5 +1,8 @@
 # Early Creativity - Cube
 
+![Cubes](https://github.com/parastuffs/cube-neuro/raw/main/images/cubes.jpg "Cubes")
+
+
 Le cube présente un bouton sur cinq de ses faces et une trappe sous sa face inférieure.
 Sous la trappe se trouvent :
 - Un port mini-USB pour reprogrammer le micro-contrôleur.
@@ -24,6 +27,9 @@ Les boutons sont numérotés comme suit :
 3. Face latérale côté circuit imprimé (opposée au haut-parleur)
 4. Face latérale gauche (face inférieure vers soi)
 5. Face latérale droite (face inférieure vers soi)
+
+![Cubes](https://github.com/parastuffs/cube-neuro/raw/main/images/legend.jpg "Cubes")
+
 
 ### Changer le son joué en mode démonstration
 Le son joué doit se trouver à la racine de la carte micro-SD et **doit** se nommer `sound.wav`.
