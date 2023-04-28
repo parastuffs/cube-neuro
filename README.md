@@ -54,8 +54,11 @@ Cet identifiant `<id>` est ensuite utilisé pour créer un fichier `exp_<id>.csv
 
 Tout comme les fichiers audio, les noms des fichiers d'expérience ne sont pas sensible à la casse (`EXP_20.CSV` est identique à `exp_20.csv`) et ne peuvent pas dépasser huit caractères, extension non-comprise (`exp_20.csv` est valable, mais `experience_20.csv` ou `exp_12345.csv` ne sont pas valable).
 
+### Matériel utilisé
+Le fichier [suivant](https://github.com/parastuffs/cube-neuro/blob/main/BOM.md) contient un tableau avec l'ensemble du matériel utilisé pour réaliser un cube complet.
 
 ### Améliorations possibles
 - Ajouter une RTC pour que le cube connaisse la date des expériences.
 - Décaler le support du circuit imprimé pour permettre à la trappe de se placer correctement sous le cube.
 - Prévoir un meilleur circuit d'amplification pour le haut-parleur afin d'obtenir un meilleur volume sonore.
+- Choisir le mode de fonctionnement du cube en mode démonstration (A) via un fichier de configuration sur la carte SD.
