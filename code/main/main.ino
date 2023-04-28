@@ -4,11 +4,11 @@
 #include <SPI.h>
 /* 'CS' on the reader board, any digital pin on the Arduino */
 #define SD_ChipSelectPin 10
-#define button_A 4
-#define button_B 5
-#define button_C 6
-#define button_D 7
-#define button_E 8
+#define button_A 4 // Top face
+#define button_B 5 // Board side
+#define button_C 6 // Speaker side
+#define button_D 7 // Left side
+#define button_E 8 // Right side
 #define speaker 9
 #define mode 2
 
