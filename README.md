@@ -54,6 +54,14 @@ Cet identifiant `<id>` est ensuite utilisé pour créer un fichier `exp_<id>.csv
 
 Tout comme les fichiers audio, les noms des fichiers d'expérience ne sont pas sensible à la casse (`EXP_20.CSV` est identique à `exp_20.csv`) et ne peuvent pas dépasser huit caractères, extension non-comprise (`exp_20.csv` est valable, mais `experience_20.csv` ou `exp_12345.csv` ne sont pas valable).
 
+### Mettre à jour la configuration des cubes
+Dans leur configuration par défaut, les cubes se comportent comme suit en mode démonstration :
+- Les boutons jaunes suivent le schéma suivant lors de pressions successives : son / pas de son / son.
+- Les boutons rouges suivent le schéma suivant lors de pressions successives : pas de son / son / pas de son.
+- Les boutons verts ne génère aucun sons.
+
+Un guide plus détaillé est disponible [ici](https://github.com/parastuffs/cube-neuro/tree/main/code) sur la mise à jour du code sur le micro-contrôleur.
+
 ### Matériel utilisé
 Le fichier [suivant](https://github.com/parastuffs/cube-neuro/blob/main/BOM.md) contient un tableau avec l'ensemble du matériel utilisé pour réaliser un cube complet.
 
