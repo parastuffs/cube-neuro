@@ -1,3 +1,5 @@
+Attention, veillez à ne connecter le micro-contrôleur à votre ordinateur **que si le cube est éteint !** Le micro-contrôleur n'apprécie pas de recevoir 5 V de la batterie *et* du câble USB en m
+
 ## Comment mettre le code à jour sur le micro-contrôleur ?
 Le micro-contrôleur utilisé est un **Arduino Nano** (ou équivalent). La méthode la plus facile pour le programmer est d'utiliser l'environnement de développement intégré (IDE) officiel.
 Ce dernier est téléchargeable [sur le site du fabricant](https://support.arduino.cc/hc/en-us/articles/360019833020-Download-and-install-Arduino-IDE).
