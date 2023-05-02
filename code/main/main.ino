@@ -12,10 +12,12 @@
 #define speaker 9
 #define mode 2
 
-/* YELLOW: Sound / No sound / Sound */
+/* YELLOW: Always play sound */
 //#define MODE_YELLOW
-/* RED: No sound / Sound / No sound */
-//#define MODE_RED
+/* RED (NoYesNo): No sound / Sound / No sound */
+//#define MODE_RED_NYN
+/* RED (YesNoYes): Sound / No sound / Sound */
+//#define MODE_RED_YNY
 /* GREEN: No sound */
 #define MODE_GREEN
 
@@ -144,26 +146,34 @@ void demoRoutine()
 {
   #ifdef MODE_YELLOW
   if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
-    demo_press_count ++;
-    if(demo_press_count == 1) {
-      playSound();
-    }
-    else if(demo_press_count == 3) {
-      playSound();
-      demo_press_count = 0;
-    }
+    playSound();
     /* Delay for a time, limiting multiple concurrent presses and overlapping sounds. */
     delay(300);
   }
   #endif
 
-  #ifdef  MODE_RED
+  #ifdef  MODE_RED_NYN
   if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
     demo_press_count ++;
     if(demo_press_count == 2) {
       playSound();
     }
     else if(demo_press_count == 3) {
+      demo_press_count = 0;
+    }
+      /* Delay for a time, limiting multiple concurrent presses and overlapping sounds. */
+      delay(300);
+  }
+  #endif
+
+  #ifdef  MODE_RED_YNY
+  if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
+    demo_press_count ++;
+    if(demo_press_count == 1) {
+      playSound();
+    }
+    else if(demo_press_count == 3) {
+      playSound();
       demo_press_count = 0;
     }
       /* Delay for a time, limiting multiple concurrent presses and overlapping sounds. */
