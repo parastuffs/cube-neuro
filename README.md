@@ -56,8 +56,8 @@ Tout comme les fichiers audio, les noms des fichiers d'expérience ne sont pas s
 
 ### Mettre à jour la configuration des cubes
 Dans leur configuration par défaut, les cubes se comportent comme suit en mode démonstration :
-- Les boutons jaunes suivent le schéma suivant lors de pressions successives : son / pas de son / son.
-- Les boutons rouges suivent le schéma suivant lors de pressions successives : pas de son / son / pas de son.
+- Les boutons jaunes génèrent systématiquement un son.
+- Les boutons rouges suivent le schéma suivant lors de pressions successives : pas de son / son / pas de son *ou* son / pas de son / son en fonction de la configuration souhaitée.
 - Les boutons verts ne génère aucun sons.
 
 Un guide plus détaillé est disponible [ici](https://github.com/parastuffs/cube-neuro/tree/main/code) sur la mise à jour du code sur le micro-contrôleur.
