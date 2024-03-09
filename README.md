@@ -3,6 +3,7 @@
 ![Cubes](https://github.com/parastuffs/cube-neuro/raw/main/images/20231104_170055.jpg "Cubes")
 
 Ceci est la documentation pour la seconde version du cube. La première version (V1) est disponible [ici](https://github.com/parastuffs/cube-neuro/blob/main/README_V1.md)
+D'autres photos du développement du cube sont disponibles [en ligne](https://photos.app.goo.gl/r4oXzCXrc1rNYwXG9).
 
 
 Le cube présente un bouton sur cinq de ses faces et une trappe sous sa face inférieure.
