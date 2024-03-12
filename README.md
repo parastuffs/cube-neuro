@@ -1,4 +1,4 @@
-# Early Creativity - Cube
+# Early Curiosity - Cube
 
 ![Cubes](https://github.com/parastuffs/cube-neuro/raw/main/images/20231104_170055.jpg "Cubes")
 
