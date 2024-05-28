@@ -29,5 +29,6 @@ Si le code refuse de s'envoyer vers le micro-contrôleur, vérifiez les élémen
 - Le bon type de carte est sélectionné : `WEMOS LOLIN32 Lite`.
 - Sélectionnez le bon port.
 
-Si le programme ne fonctionne pas, essayez de l'exécuter tout en étant connecté à l'IDE et appuyez sur la petite loupe en haut à droite de l'interface.
+Si le programme ne fonctionne pas, essayez de l'exécuter tout en étant connecté à l'IDE et appuyez sur la petite loupe en haut à droite de l'interface. Vérifiez que l'option « 115200 baud » est bien sélectionnée dans la fenêtre.
 Sur le micro-contrôleur, appuyez sur le bouton à côté du port USB pour le redémarrer et vérifiez qu'il ne vous dit pas `SD Failed`, ce qui vous indiquerait que la carte SD n'est pas correctement insérée ou que le fichier audio `sound.mp3` est absent de la carte.
+Si l'enregistrement des données s'arrête après une pression, reprogrammez le cube.
