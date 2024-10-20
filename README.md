@@ -2,65 +2,57 @@
 
 ![Cubes](https://github.com/parastuffs/cube-neuro/raw/main/images/20231104_170055.jpg "Cubes")
 
-Ceci est la documentation pour la seconde version du cube. La première version (V1) est disponible [ici](https://github.com/parastuffs/cube-neuro/blob/main/README_V1.md)
-D'autres photos du développement du cube sont disponibles [en ligne](https://photos.app.goo.gl/r4oXzCXrc1rNYwXG9).
+This is the documentation for the **third version** of the cube. v1 is available [here](https://github.com/parastuffs/cube-neuro/blob/main/README_V1.md) and v2 [here](https://github.com/parastuffs/cube-neuro/blob/main/README_V2.md).
+Pictures of the development are available [online](https://photos.app.goo.gl/r4oXzCXrc1rNYwXG9).
 
+The cube has a button on five of its faces, and a hatch on the bottom face.
+Under the hatch, there is:
+- A USB-C port for programming and battery charging. 
+> [!IMPORTANT]  
+> To charge the battery, the cube needs to be **on**.
+- A switch to turn the cube on and off.
+- A micro-SD reader.
 
-Le cube présente un bouton sur cinq de ses faces et une trappe sous sa face inférieure.
-Sous la trappe se trouvent :
-- Un port micro-USB pour reprogrammer le micro-contrôleur et recharger la batterie. **Attention, pour recharger la batterie, il faut connecter le câble USB et allumer le cube.**
-- Un interrupteur permettant d'allumer (ON) ou éteindre (OFF) le cube.
-- Un lecteur de carte micro-SD.
+In the demonstration mode, pressing a button might trigger a sound depending on the cube configuration.
+> [!IMPORTANT]
+> To switch to experiment mode, you need to keep any of the buttons pressed for two seconds.
+In order to come back to demonstration mode, you need to reboot the cube by turning it off and on again.
 
-En mode démonstration, appuyer sur un bouton peut générer un son à l'aide du haut-parleur exposé sur la face inférieure.
-**Pour passer au mode expérience, il faut maintenir un bouton enfoncé au moins deux secondes.**
-Pour revenir au mode démonstration, il faut redémarrer le cube.
-
-En mode expérience, appuyer sur un bouton ne génère aucun son, mais les pressions sont enregistrée sur la carte micro-SD dans un fichier `.csv`. Ce fichier suit la structure suivante :
+In experiment mode, pressing a button never triggers a sound, but all events are saved to the SD card in a `.csv` file. It follows this structure:
 
 | observation | face | pression_start | pression_stop | sound | isExperiment |
 | --- | --- | --- | --- | --- | --- |
-| Numéro de l'observation, incrémental | Valeur entre 1 et 5 du bouton appuyé | Instant de début de pression | Instant de fin de pression | Son joué (1) ou non (0) | Pression durant la démo (0) ou l'expérience (1) |
+| Observation count, incremental | 1 to 5 value of the pressed button | Time of start of press | Time of end of press | Sound played (1) or not (0) | Press durring demo (0) or experiment (1) |
 
-La mesure du temps se fait en milliseconde, l'instant initial étant l'allumage du cube.
-
-Les boutons sont numérotés comme suit :
-1. Face supérieure
-2. Face latérale côté haut-parleur
-3. Face latérale côté circuit imprimé (opposée au haut-parleur)
-4. Face latérale gauche (face inférieure vers soi)
-5. Face latérale droite (face inférieure vers soi)
+Time measurement is in milliseconds, 0 being the powering up of the cube.
 
 
-### Changer le son joué en mode démonstration
-Le son joué doit se trouver à la racine de la carte micro-SD et **doit** se nommer `sound.mp3`.
+### Change the sound played during demonstration mode
+The sound must be located at the root of the micro-SD card and **must** be named `sound.mp3`.
 
-### Le cube et la notion de temps
-Le micro-contrôleur n'a pas de notion de date. À chaque démarrage, il recommence à compte le temps qui passe à partir de zéro. Les fichiers créés ont donc tous la même date de création erronée qui ne doit pas être prise en compte.
+### The cube and dates
+The micro-controller does not have any notion of the actual date. With each reboot, it starts couting time from zero again. All files are thus created with an erroneous creation date which should be ignored.
 
-### Structure des fichiers
-Lors de son premier démarrage, le micro-contrôleur vérifie si le fichier `exp_id.txt` existe et le crée s'il n'est pas présent sur la carte micro-SD.
-Ce dernier contient une liste des identifiants incrémentaux d'expériences enregistrées.
-Au passage du cube en mode expérience (mode B), le micro-contrôleur regarde le dernier identifiant dans ce fichier et incrémente sa valeur afin de créer un nouvel identifiant d'expérience.
-Cet identifiant `<id>` est ensuite utilisé pour créer un fichier `exp_<id>.csv`.
+### File structure
+Upon starting for the first time, the micro-controller checks if the file `exp_id.txt` exists and does create it if it's not found.
+This file contains a list of all incremental IDs of previously saved experiments.
+When the cube switches to experiment mode, the micro-controller checks the last ID in that file, increment it, and create a new experiment ID.
+This number `<id>` is then used to create a file `exp_<id>.csv`.
 
-Tout comme les fichiers audio, les noms des fichiers d'expérience ne sont pas sensible à la casse (`EXP_20.CSV` est identique à `exp_20.csv`) et ne peuvent pas dépasser huit caractères, extension non-comprise (`exp_20.csv` est valable, mais `experience_20.csv` ou `exp_12345.csv` ne sont pas valable).
+Just like audio file, experiment file names are not case sensitive (`EXP_20.csv` is the same as `exp_20.csv`) and cannot exceed eight characters without the file extension (`exp_20.csv` is valid, `experience_20.csv` or `exp_12345.csv` are not).
 
-### Mettre à jour la configuration des cubes
-Dans leur configuration par défaut, les cubes se comportent comme suit en mode démonstration :
-- Alpha : son à chaque pression
-- Beta : aucun son
-- Gamma : son une pression sur deux
-- 
-- Les boutons rouges suivent le schéma suivant lors de pressions successives : pas de son / son / pas de son *ou* son / pas de son / son en fonction de la configuration souhaitée.
-- Les boutons verts ne génère aucun sons.
+### Update the cube configuration
+In their default configuration, the cube behave as such in demonstration mode:
+- Alpha: Always play sound
+- Beta: No sound
+- Gamma: Sound / No sound
+- Delta: No sound x7 / Sound
 
-Un guide plus détaillé est disponible [ici](https://github.com/parastuffs/cube-neuro/tree/main/code) sur la mise à jour du code sur le micro-contrôleur.
+A more detailed guide is available [here](https://github.com/parastuffs/cube-neuro/tree/main/code) on updating the code.
 
-### Matériel utilisé
-Le fichier [suivant](https://github.com/parastuffs/cube-neuro/blob/main/BOM.md) contient un tableau avec l'ensemble du matériel utilisé pour réaliser un cube complet.
+### Hardware
+This [file](https://github.com/parastuffs/cube-neuro/blob/main/BOM.md) has a full bill of materials. Since v3, the cube is laser cutted instead of 3D printed.
 
-### Améliorations possibles
-- Ajouter une RTC pour que le cube connaisse la date des expériences.
-- Prévoir un meilleur circuit d'amplification pour le haut-parleur afin d'obtenir un meilleur volume sonore.
-- Choisir le mode de fonctionnement du cube en mode démonstration (A) via un fichier de configuration sur la carte SD.
+### Improvement considered
+- Add an RTC to keep track of time.
+- Having a configuration file for the cube type.
