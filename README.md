@@ -1,9 +1,9 @@
 # Early Curiosity - Cube
 
-![Cubes](https://github.com/parastuffs/cube-neuro/raw/main/images/20231104_170055.jpg "Cubes")
+![Cubes](https://github.com/parastuffs/cube-neuro/raw/main/images/v3.jpg "Cubes")
 
 This is the documentation for the **third version** of the cube. v1 is available [here](https://github.com/parastuffs/cube-neuro/blob/main/README_V1.md) and v2 [here](https://github.com/parastuffs/cube-neuro/blob/main/README_V2.md).
-Pictures of the development are available [online](https://photos.app.goo.gl/r4oXzCXrc1rNYwXG9).
+Pictures of the development are available [online](https://photos.app.goo.gl/61a8nF2CPd1NJpt47)(v2 [here](https://photos.app.goo.gl/r4oXzCXrc1rNYwXG9)).
 
 The cube has a button on five of its faces, and a hatch on the bottom face.
 Under the hatch, there is:
