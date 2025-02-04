@@ -7,11 +7,11 @@ Ce dernier est téléchargeable [sur le site du fabricant](https://support.ardui
 
 Avant tout, assurez-vous que les bibliothèques nécessaires sont correctement installées.
 
-1. Allez dans le menu `Tools > Boards > Boards Manager...` et vérifiez que `ESP32` est installé.
+1. Allez dans le menu `Tools > Boards > Boards Manager...` et vérifiez que `ESP32` version `2.0.17` est installé.
 ![Boards manager](https://github.com/parastuffs/cube-neuro/raw/main/images/arduino_boards_manager_esp32.png "Boards manager")
 2. Allez dans le menu `Tools > Manage Libraries...` et installez la bibliothèques `SD` (gestion de la carte SD) ainsi que `ESP32LitePack`.
 ![Libraries Manager](https://github.com/parastuffs/cube-neuro/raw/main/images/arduino_libraries.png "Libraries Manager")
-3. Télécharger la bibliothèque audio [ici](https://github.com/schreibfaul1/ESP32-audioI2S/archive/refs/tags/3.0.8.zip) et suivez [ce guide](https://github.com/schreibfaul1/ESP32-audioI2S/wiki#can-the-arduino-ide-be-used) pour l'installer.
+3. Téléchargez la bibliothèque audio [ici](https://github.com/schreibfaul1/ESP32-audioI2S/archive/refs/tags/3.0.8.zip) et suivez [ce guide](https://github.com/schreibfaul1/ESP32-audioI2S/wiki#can-the-arduino-ide-be-used) pour l'installer.
 
 Sélectionnez ensuite la bonne carte dans la liste des cartes supportées dans le menu `Tools > Boards > ESP32 Arduino > WEMOS LOLIN32 Lite`.
 
