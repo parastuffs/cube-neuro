@@ -25,13 +25,13 @@
 #define led_pin 22
 
 /* Alpha: Always play sound */
-//#define MODE_ALPHA
+#define MODE_ALPHA
 /* Beta: No sound */
 //#define MODE_BETA
 /* Gamma: Sound / No sound */
 //#define MODE_GAMMA
 /* Delta (YesNoYes): No sound*7 / Sound */
-#define MODE_DELTA
+//#define MODE_DELTA
 
 /**
  * Global variables
@@ -46,7 +46,7 @@ String exp_filename;
 char buf[4];
 int exp_ID = 0;
 
-int modeSwitchTime = 2000; // 2 seconds
+int modeSwitchTime = 4000; // 2 seconds
   
 #ifdef  MODE_ALPHA
 const char* measures_header = "observation, face, pression_start, pression_stop, sound, isExperiment, alpha";
@@ -63,6 +63,7 @@ const char* measures_header = "observation, face, pression_start, pression_stop,
 
 bool triggered[5] = {false, false, false, false, false};
 bool rising_edge[5] = {false, false, false, false, false};
+bool rising_edge_detected[5] = {false, false, false, false, false};
 bool falling_edge[5] = {false, false, false, false, false};
 unsigned long rising_time[5] = {0, 0, 0, 0, 0};
 unsigned int cur_obs = 1;
@@ -180,7 +181,12 @@ void demoRoutine()
   scanButtons(isExperiment);
   
   #ifdef MODE_ALPHA
-  if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
+  if(rising_edge_detected[0] || rising_edge_detected[1] || rising_edge_detected[2] || rising_edge_detected[3] || rising_edge_detected[4]) {
+    rising_edge_detected[0] = false;
+    rising_edge_detected[1] = false;
+    rising_edge_detected[2] = false;
+    rising_edge_detected[3] = false;
+    rising_edge_detected[4] = false;
     play_audio();
     /* Delay for a time, limiting multiple concurrent presses and overlapping sounds. */
     delay(300);
@@ -188,7 +194,12 @@ void demoRoutine()
   #endif
 
   #ifdef  MODE_GAMMA
-  if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
+  if(rising_edge_detected[0] || rising_edge_detected[1] || rising_edge_detected[2] || rising_edge_detected[3] || rising_edge_detected[4]) {
+    rising_edge_detected[0] = false;
+    rising_edge_detected[1] = false;
+    rising_edge_detected[2] = false;
+    rising_edge_detected[3] = false;
+    rising_edge_detected[4] = false;
     demo_press_count ++;
     if(demo_press_count == 2) {
       play_audio();
@@ -200,7 +211,12 @@ void demoRoutine()
   #endif
 
   #ifdef  MODE_DELTA
-  if(digitalRead(button_A) || digitalRead(button_B) || digitalRead(button_C) || digitalRead(button_D) || digitalRead(button_E)) {
+  if(rising_edge_detected[0] || rising_edge_detected[1] || rising_edge_detected[2] || rising_edge_detected[3] || rising_edge_detected[4]) {
+    rising_edge_detected[0] = false;
+    rising_edge_detected[1] = false;
+    rising_edge_detected[2] = false;
+    rising_edge_detected[3] = false;
+    rising_edge_detected[4] = false;
     demo_press_count ++;
     if(demo_press_count == 8) {
       play_audio();
@@ -249,41 +265,46 @@ void experimentRoutine()
 void scanButtons(bool isXP){
   curtime = millis();
   // TODO FACTORISE THIS!
-  if(digitalRead(button_A)){
+  if(digitalRead(button_A) && !rising_edge[0]){
     Serial.print("A");
     rising_edge[0] = true;
+    rising_edge_detected[0] = true;
   }
   else if (!digitalRead(button_A) && rising_edge[0]) {
     rising_edge[0] = false;
     falling_edge[0] = true;
   }
-  if(digitalRead(button_B)){
+  if(digitalRead(button_B) && !rising_edge[1]){
     Serial.print("B");
     rising_edge[1] = true;
+    rising_edge_detected[1] = true;
   }
   else if(!digitalRead(button_B) && rising_edge[1]){
     rising_edge[1] = false;
     falling_edge[1] = true;
   }
-  if(digitalRead(button_C)){
+  if(digitalRead(button_C) && !rising_edge[2]){
     Serial.print("C");
     rising_edge[2] = true;
+    rising_edge_detected[2] = true;
   }
   else if(!digitalRead(button_C) && rising_edge[2]){
     rising_edge[2] = false;
     falling_edge[2] = true;
   }
-  if(digitalRead(button_D)){
+  if(digitalRead(button_D) && !rising_edge[3]){
     Serial.print("D");
     rising_edge[3] = true;
+    rising_edge_detected[3] = true;
   }
   else if(!digitalRead(button_D) && rising_edge[3]){
     rising_edge[3] = false;
     falling_edge[3] = true;
   }
-  if(digitalRead(button_E)){
+  if(digitalRead(button_E) && !rising_edge[4]){
     Serial.print("E");
     rising_edge[4] = true;
+    rising_edge_detected[4] = true;
   }
   else if(!digitalRead(button_E) && rising_edge[4]){
     rising_edge[4] = false;
