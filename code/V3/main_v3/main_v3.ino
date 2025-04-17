@@ -352,7 +352,7 @@ void audio_info(const char *info) {
   
   Serial.print("info        "); Serial.println(info);
   // Prints the status information string and adds a line break
-  // The 'info' parameter contains status details from the audio library
+  // The "info" parameter contains status details from the audio library
 }
 
 /** **********************
