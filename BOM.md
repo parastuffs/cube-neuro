@@ -6,10 +6,10 @@
 | 4mmx2mm magnets | 2 | Hatch | [Link](https://www.aliexpress.com/item/1005006362930902.html) | N/A |
 | Lolin32 Lite USB-C | 1 | Micro-controller | [Link](https://www.aliexpress.com/item/1005006267442536.html) | N/A |
 | 1GB Micro-SD card | 1 | Storage | [Link](https://www.aliexpress.com/item/1005005730937046.html) | N/A |
-| Low profile, linear switches 20gf | 5 | Main buttons | [Link](https://www.aliexpress.com/item/1005005066585322.html) | N/A |
-| Arcade button caps Kailh | 5 | Main buttons caps | [Link](https://www.aliexpress.com/item/1005006902597750.html) | N/A |
+| Kailh Deep Sea Silent Mini Mechanical Switches | 5 | Main buttons | [Link](https://nl.aliexpress.com/item/1005008382793794.html) | N/A |
+| Arcade button caps   | 5 | Main buttons caps | [Link](https://nl.aliexpress.com/item/1005005970271632.html) | N/A |
 | 3.7V 1100mAh battery 603449 | 1 | Battery | [Link](https://www.amazon.com.be/dp/B08VRYS8FT) | N/A |
-| 2W/8Ω speaker, 23 mm | 1 | Speaker | [Link](https://www.aliexpress.com/item/1005006056014552.html) | N/A |
+| 2W/8Ω speaker, 23 mm | 1 | Speaker | [Link](https://nl.aliexpress.com/item/4000147941440.html) | N/A |
 | JST cables 1.25mm male | 2 | Connecting battery and speaker on the PCB | [Link](https://www.amazon.fr/dp/B08JV96C4N) | N/A |
 | JST connectors 1.25mm femelle | 2 | Connecting battery and speaker on the PCB | [Link](https://www.amazon.fr/dp/B0B3NGZG5N) | N/A |
 | SPI micro-SD card reader | 1 | Storage reader | [Link](https://www.aliexpress.com/item/1005005591145849.html) | N/A |
