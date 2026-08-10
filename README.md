@@ -56,3 +56,5 @@ This [file](https://github.com/parastuffs/cube-neuro/blob/main/BOM.md) has a ful
 ### Improvement considered
 - Add an RTC to keep track of time.
 - Having a configuration file for the cube type.
+
+Copyright © 2026 Quentin Delhaye, Romain di Stasi, Adélaïde de Heering, Claire Kabdebon
